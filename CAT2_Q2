@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+        <title>Employee Pay Calculator</title>
+        <link rel="stylesheet" href="styles.css">
+        <style>
+            body {
+                font-family: Arial,sans-serif;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+                background-color: #f3f8ffa2;
+            }
+
+            .container {
+                background-color: #e6e8ffb2;
+                padding: 20px;
+                border-radius: 10px;
+                width: 300px;
+                box-shadow: 0px 4px 8px; rgba(0,0,0.1);
+            }
+
+            h2,h3 {
+                text-align: center;
+                color: #3a3a88;
+            }
+
+            label {
+                display: block;
+                color: #323292;
+                font-size: 0.9em;
+                margin-top: 10px;
+            }
+
+            input{
+                width: 100%;
+                padding: 8px;
+                margin-top: 5px;
+                border: 1px solid #c59191;
+                border-radius: 5px;
+                box-sizing: border-box;
+            }
+
+            button {
+                width: 100%;
+                padding: 10px;
+                margin-top: 15px;
+                background-color: #2a2a94;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                font-size: 1em;
+                cursor: pointer;
+            }
+
+            button:hover {
+                background-color: #1e1e70;
+            }
+
+            #result {
+                margin-top: 20px;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h2>Employee Pay Calculator</h2>
+            <form id="payform">
+                <label for="name">Employee name:</label>
+                <input type="text" id="name" required>
+
+                <label for="hoursworked">Hours Worked:</label>
+                <input type="number" id="hoursworked" required>
+
+                <label for="rateperhour">Rate per Hour:</label>
+                <input type="number" id="rateperhour" required>
+
+                <button type="button" onclick="calculatepay()">Calculate Pay</button>
+            </form>
+            
+
+            <div id="result">
+                <h3>results</h3>
+                <p id="basicpay">basic pay:</p>
+                <p id="tax">tax:</p>
+                <p id="netpay">net pay:</p>
+
+                <script>
+                    function calculatepay() {
+                        const name = document.getElementById("employeename").value;
+                        const hours = parseFloat(document.getElementById("hoursworked").value;
+                        const Rate = parseFloat(document.getElementById("rateperhour").value;
+
+
+                        const basicpay =hours * Rate;
+
+
+                        let tax = 0;
+                        if (basicpay > 50000) {
+                            tax = basicpay * 0.20;
+                        } else if (basicpay >= 20000 && basicpay <= 50000) {
+                            tax = basicpay * 0.10;
+                        }
+
+
+                        const netpay = basicpay - tax;
+
+
+                        document.getElementById("result").innerHTML='
+                        Employee Name: ${name} <br>
+                        Basic Pay: $${basicpay.toFixed(2)}<br>
+                        Tax: $${tax.toFixed(2)} <br>
+                        Net Pay: $${netpay.toFixed(2)}
+                        ';
+                        }
+                    }
+                </script>
+            </div>
+        </div>
+
+    </body>
+
+</html>
